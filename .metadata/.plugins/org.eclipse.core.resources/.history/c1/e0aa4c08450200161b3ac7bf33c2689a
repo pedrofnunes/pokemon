@@ -1,0 +1,11 @@
+
+public class Ataque {
+	private int dano;
+	private int tipo;
+	private String nome;
+	public void usar (Pokemon p){
+		multiplicador = verificaBonus (this.tipo, p.getTipo());
+		p.tomaDano (multiplicador*dano);
+		p.morreu();
+	}
+}
