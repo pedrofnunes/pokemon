@@ -66,6 +66,7 @@ public class Batalha extends Controller {
 		}
 		public void action(){
 			at.usar(target.getAtivo());
+			System.out.println(arg0);
 			if (target.getAtivo().getEstado() == false){
 				target.pokeMorreu();
 				if (target.perdeu() == true){
@@ -84,8 +85,12 @@ public class Batalha extends Controller {
 	}
 	private class UsarItem extends Event{
 		private int prior = 2;
+		private Item item;
+		private Pokemon p;
 		public UsarItem (long eventTime, Item item, Pokemon p) {
 			super(eventTime);
+			this.item = item;
+			this.p = p;
 		}
 		public void action(){
 			item.usaItem(p);
@@ -96,8 +101,12 @@ public class Batalha extends Controller {
 	}
 	private class Trocar extends Event{
 		private int prior = 1;
+		private Treinador t;
+		private int i;
 		public Trocar (long eventTime, Treinador t, int i) {
 			super(eventTime);
+			this.t = t;
+			this.i = i;
 		}
 		public void action(){
 			t.trocaPoke(i);
@@ -108,6 +117,7 @@ public class Batalha extends Controller {
 	}
 	private class Fugir extends Event{
 		private int prior = 0;
+		private Treinador t;
 		public Fugir (long eventTime, Treinador t) {
 			super(eventTime);
 		}

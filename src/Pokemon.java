@@ -40,7 +40,6 @@ public class Pokemon {
 		hp = hp + cura;
 	}
 	public void morreu(){
-		System.out.println(this.nome + " desmaiou!");
 		vivo = false;
 	}
 	public void tomaDano(int dano){
