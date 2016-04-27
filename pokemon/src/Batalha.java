@@ -35,34 +35,49 @@ public class Batalha extends Controller {
 	Ataque waterGun = new Ataque (Water Gun, 40, 0);
 	Ataque zapCannon = new Ataque (Zap Cannon, 150, 2);
 
-	Pokemon pikachu = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
+	Pokemon pikachu = new Pokemon (Pikachu, 150, zapCannon, thunderbolt, spark, quickAttack);
+	Pokemon charizard = new Pokemon (Charizard, 300, fireBlast, flamethrower, fly, metalClaw);
+	Pokemon chansey = new Pokemon (Chansey, 650, thundershock, tackle, pursuit, waterGun);
+	Pokemon alakazan = new Pokemon (Alakazan, 350, psychic, shadowBall, confusion, pursuit);
+	Pokemon blastoise = new Pokemon (Blastoise, 300, surf, waterGun, iceBeam, earthquake);
+	Pokemon snorlax = new Pokemon (Snorlax, 450, bodySlam, earthquake, hyperBeam, headbutt);
 
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
-	Pokemon abc = new Pokemon (abc, 100, at, at, at, at);
+	Pokemon sceptile = new Pokemon (Sceptile, 300, solarbeam, sludge, razorLeaf, leafBlade);
+	Pokemon gardevoir = new Pokemon (Gardevoir, 350, thunderbolt, psychic, flamethrower, confusion);
+	Pokemon tyranitar = new Pokemon (Tyranitar, 450, rockSlide, earthquake, dragonbreath, seismicToss);
+	Pokemon octilery = new Pokemon (Octilery, 250, surf, zapCannon, iceBeam, hyperBeam);
+	Pokemon hitmontop = new Pokemon (Hitmontop, 200, megaPunch, megaKick, seismicToss, earthquake);
+	Pokemon houndoom = new Pokemon (Houndoom, 300, fireBlast, bite, quickAttack, flamethrower);
+	
+	Treinador red = new Treinador (Red, pikachu, charizard, chansey, alakazan, blastoise, snorlax);
+	Treinador silver = new Treinador (Silver, sceptile, gardevoir, tyranitar, octilery, hitmontop, houndoom);
+	
 	private class Atacar extends Event{
-		public Atacar (long eventTime) {
+		private int prior = 3;//ou 4 ou 5, dependendo da velocidade do ataque.
+		public Atacar (long eventTime, Ataque at, Treinador src, Treinador target) {
 			super(eventTime);
+			this.prior = this.prior + at.prior;
 		}
 		public void action(){
+			at.usar(target.getAtivo());
+			//rola o ataque
+			//ve se o pokemon morreu
+			//se nao morreu, bola
+			//se morreu, deleta/marca o evento seguinte 
+			//ve se o treinador ainda tem pokemons aptos
+			//se tiver, pega o mais facil e troca
+			//se nao tiver, aciona o final (ainda tem q fazer um metodo p final)
 		}
 		public String description(){
 			return ("Efetua um ataque");
 		}
 	}
 	private class UsarItem extends Event{
-		public UsarItem (long eventTime) {
+		private int prior = 2;
+		public UsarItem (long eventTime, Item item, Pokemon p) {
 			super(eventTime);
 		}
-		public void action(Item item, Pokemon p){
+		public void action(){
 			item.usaItem(p);
 		}
 		public String description(){
@@ -70,27 +85,33 @@ public class Batalha extends Controller {
 		}
 	}
 	private class Trocar extends Event{
-		public Trocar (long eventTime) {
+		private int prior = 1;
+		public Trocar (long eventTime, Treinador t, int i) {
 			super(eventTime);
 		}
-		public void action(Treinador t, int i){
-			Pokemon Aux = t.pokemon[0];
-			t.pokemon[0] = t.pokemon[i];
-			t.pokemon[i] = Aux;
+		public void action(){
+			t.trocaPoke(i);
 		}
 		public String description(){
 			return ("Troca de Pokemon");
 		}
 	}
 	private class Fugir extends Event{
-		public Fugir (long eventTime) {
+		private int prior = 0;
+		public Fugir (long eventTime, Treinador t) {
 			super(eventTime);
 		}
-		public void action(Treinador t){
+		public void action(){
 
 		}
 		public String description(){
 			return ("Foge da batalha");
 		}
+	}
+	public void Acabou {
+		
+	}
+	public static void main(String[] args){
+		
 	}
 }

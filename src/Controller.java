@@ -31,12 +31,34 @@ public class Controller {
 		es.add(c);
 	}
 	public void run() {
-		Event e;
-		while((e = es.getNext()) != null) {
-			if (e.ready()) {
-				e.action();
-				System.out.println(e.description());
+		Event e, f;
+		while(es.getNext() != null) {
+			e = es.getNext();
+			es.removeCurrent();
+			if(es.getNext() != null){
+				f = es.getNext();
 				es.removeCurrent();
+			}
+			if (e.getPrior() >= f.getPrior()) {
+				if(e.ready()){
+					e.action();
+					System.out.println(e.description());
+				}
+				//aqui ele tem que ver se morreu o pokemon. se ele morrer AQUI, o proximo evento nao rola, pq seria o ataque dele
+				if(f.ready()){
+					f.action();
+					System.out.println(f.description());
+				}
+			}
+			else{
+				if(f.ready()){
+					f.action();
+					System.out.println(f.description());
+				}
+				//aqui tb
+				if(e.ready()){
+					e.action();
+					System.out.println(e.description());
 			}
 		}
 	}
