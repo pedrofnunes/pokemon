@@ -74,7 +74,7 @@ public class Batalha extends Controller {
 				}
 				else{
 					target.trocaPoke(target.proxVivo());
-					//marcar evento seguinte sei la como
+					this.deuProblema();
 				}
 			}
 		}
