@@ -33,12 +33,27 @@ public class Treinador {
 	}
 	public boolean perdeu(){
 		if (aptos == 0){
-			System.out.println(nome+" perdeu.");
 			return true;
 		}
 		return false;
 	}
 	public void pokeMorreu(){
 		aptos = aptos - 1;
+	}
+	public void trocaPoke(int i){
+		Pokemon Aux = pokemons[0];
+		pokemons[0] = pokemons[i];
+		pokemons[i] = Aux;
+	}
+	public Pokemon getAtivo(){
+		return pokemons[0];
+	}
+	public int proxVivo(){
+		int i;
+		for (i = 1; i < 5; i++){
+			if (pokemons[i].getEstado() == true)
+				return i;
+		}
+		return -1;
 	}
 }
