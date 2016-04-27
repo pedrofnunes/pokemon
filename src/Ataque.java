@@ -7,5 +7,6 @@ public class Ataque {
 	}
 	public void usar (Pokemon p){
 		p.tomaDano (dano);
+		//lalala
 	}
 }
