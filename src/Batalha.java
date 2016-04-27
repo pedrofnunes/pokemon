@@ -54,19 +54,29 @@ public class Batalha extends Controller {
 	
 	private class Atacar extends Event{
 		private int prior = 3;//ou 4 ou 5, dependendo da velocidade do ataque.
+		private Ataque at;
+		private Treinador src;
+		private Treinador target;
 		public Atacar (long eventTime, Ataque at, Treinador src, Treinador target) {
 			super(eventTime);
-			this.prior = this.prior + at.prior;
+			this.at = at;
+			this.src = src;
+			this.target = target;
+			this.prior = this.prior + at.getPrior();
 		}
 		public void action(){
 			at.usar(target.getAtivo());
-			//rola o ataque
-			//ve se o pokemon morreu
-			//se nao morreu, bola
-			//se morreu, deleta/marca o evento seguinte 
-			//ve se o treinador ainda tem pokemons aptos
-			//se tiver, pega o mais facil e troca
-			//se nao tiver, aciona o final (ainda tem q fazer um metodo p final)
+			if (target.getAtivo().getEstado() == false){
+				target.pokeMorreu();
+				if (target.perdeu() == true){
+					//deleta evento tudo
+					//rola o fim do jogo
+				}
+				else{
+					target.trocaPoke(target.proxVivo());
+					//marcar evento seguinte sei la como
+				}
+			}
 		}
 		public String description(){
 			return ("Efetua um ataque");

@@ -19,10 +19,10 @@ class EventSet {
 		}
 		while (events[next] == null);
 			return events[next];
-		}
-		public void removeCurrent() {
+	}
+	public void removeCurrent() {
 			events[next] =	 null;
-		}
+	}
 }
 
 public class Controller {
@@ -32,6 +32,7 @@ public class Controller {
 	}
 	public void run() {
 		Event e, f;
+		f = null;
 		while(es.getNext() != null) {
 			e = es.getNext();
 			es.removeCurrent();
@@ -60,7 +61,9 @@ public class Controller {
 				if(e.ready()){
 					e.action();
 					System.out.println(e.description());
+				}
 			}
 		}
 	}
 }
+	
