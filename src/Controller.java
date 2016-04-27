@@ -43,22 +43,18 @@ public class Controller {
 			if (e.getPrior() <= f.getPrior()) {
 				if(e.ready()){
 					e.action();
-					System.out.println(e.description());
 				}
 				//aqui ele tem que ver se morreu o pokemon. se ele morrer AQUI, o proximo evento nao rola, pq seria o ataque dele
 				if(e.getProblema() == false && f.ready()){
 					f.action();
-					System.out.println(f.description());
 				}
 			}
 			else{
 				if(f.ready()){
 					f.action();
-					System.out.println(f.description());
 				}
 				if(f.getProblema() == false && e.ready()){
 					e.action();
-					System.out.println(e.description());
 				}
 			}
 		}

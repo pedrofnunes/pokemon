@@ -18,5 +18,4 @@ abstract public class Event {
 		return problema;
 	}
 	abstract public void action();
-	abstract public String description();
 }
