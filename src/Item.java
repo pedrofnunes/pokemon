@@ -1,5 +1,5 @@
 
-public class Item {
+public class Item{
 	private String nome;
 	private int potencia;
 	public Item (String nome, int potencia){
