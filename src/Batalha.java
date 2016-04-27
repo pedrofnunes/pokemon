@@ -60,17 +60,13 @@ public class Batalha extends Controller {
 		}
 		public void action(){
 			at.usar(target.getAtivo());
-			if (target.getAtivo().getEstado() == false){
-				target.pokeMorreu();
-				if (target.perdeu() == true){
-					//deleta evento tudo
-					//rola o fim do jogo
-				}
-				else{
-					target.trocaPoke(target.proxVivo());
-					//marcar evento seguinte sei la como
-				}
-			}
+			//rola o ataque
+			//ve se o pokemon morreu
+			//se nao morreu, bola
+			//se morreu, deleta/marca o evento seguinte 
+			//ve se o treinador ainda tem pokemons aptos
+			//se tiver, pega o mais facil e troca
+			//se nao tiver, aciona o final (ainda tem q fazer um metodo p final)
 		}
 		public String description(){
 			return ("Efetua um ataque");
