@@ -4,7 +4,7 @@ public class Treinador {
 	private final int nPokes;
 	private int aptos;
 	private Pokemon pokemons[] = new Pokemon[6];
-	public Treinador (String nome, int n, Pokemon poke1, Pokemon poke2, Pokemon poke3, Pokemon poke4, Pokemon poke5, Pokemon poke6){
+	public Treinador (String nome, Pokemon poke1, Pokemon poke2, Pokemon poke3, Pokemon poke4, Pokemon poke5, Pokemon poke6){
 		this.nome = nome;
 		nPokes = n;
 		aptos = n;

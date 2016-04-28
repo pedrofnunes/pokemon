@@ -6,7 +6,7 @@ public class Pokemon {
 	private int tipo;
 	private boolean vivo;
 	private Ataque [] ataques = new Ataque[4];
-	public Pokemon (String nome, int maxHP, int tipo, Ataque at1, Ataque at2, Ataque at3, Ataque at4){
+	public Pokemon (String nome, int maxHP, Ataque at1, Ataque at2, Ataque at3, Ataque at4){
 		this.nome = nome;
 		this.maxHP = maxHP;
 		this.hp = maxHP;
