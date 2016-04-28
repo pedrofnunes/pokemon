@@ -16,9 +16,8 @@ class EventSet {
 			looped = true;
 		if ((next == (start + 1) % events.length) && looped)
 			return null;
-		}
-		while (events[next] == null);
-			return events[next];
+		} while (events[next] == null);
+		return events[next];
 	}
 	public void removeCurrent() {
 			events[next] =	 null;
@@ -40,20 +39,27 @@ public class Controller {
 				f = es.getNext();
 				es.removeCurrent();
 			}
-			if (e.getPrior() <= f.getPrior()) {
-				if(e.ready()){
-					e.action();
+			if (f != null){
+				if (e.getPrior() <= f.getPrior()) {
+					if(e.ready()){
+						e.action();
+					}
+					//aqui ele tem que ver se morreu o pokemon. se ele morrer AQUI, o proximo evento nao rola, pq seria o ataque dele
+					if(e.getProblema() == false && f.ready()){
+						f.action();
+					}
 				}
-				//aqui ele tem que ver se morreu o pokemon. se ele morrer AQUI, o proximo evento nao rola, pq seria o ataque dele
-				if(e.getProblema() == false && f.ready()){
-					f.action();
+				else{
+					if(f.ready()){
+						f.action();
+					}
+					if(f.getProblema() == false && e.ready()){
+						e.action();
+					}
 				}
 			}
 			else{
-				if(f.ready()){
-					f.action();
-				}
-				if(f.getProblema() == false && e.ready()){
+				if(e.ready()){
 					e.action();
 				}
 			}

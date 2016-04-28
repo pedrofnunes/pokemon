@@ -75,6 +75,7 @@ public class Batalha extends Controller {
 		}
 	}
 	private class Restart extends Event{
+		private int prior = -1;
 		public Restart(long eventTime) {
 			super(eventTime);
 		}
@@ -130,9 +131,9 @@ public class Batalha extends Controller {
 		public void action(){
 			long tm = System.currentTimeMillis();
 			addEvent(new Atacar(tm, 0, red, silver));
-			addEvent(new Atacar(tm + 500, 0, silver, red));
-			addEvent(new Atacar(tm + 1000, 1, red, silver));
-			addEvent(new Atacar(tm + 1500, 1, silver, red));
+			addEvent(new Atacar(tm + 5, 0, silver, red));
+			addEvent(new Atacar(tm + 10, 1, red, silver));
+			addEvent(new Atacar(tm + 15, 1, silver, red));
 			addEvent(new Atacar(tm + 2000, 2, red, silver));
 			addEvent(new Atacar(tm + 2500, 2, silver, red));
 			addEvent(new Atacar(tm + 3000, 3, red, silver));
@@ -158,6 +159,10 @@ public class Batalha extends Controller {
 
 	}
 	public static void main(String[] args){
-		
+		Batalha penis = new Batalha(); 
+		long tm = System.currentTimeMillis(); 
+		penis.addEvent(penis.new Restart(tm)); 
+		System.out.println("teste01");
+		penis.run();
 	}
 }
