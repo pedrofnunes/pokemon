@@ -53,7 +53,7 @@ public class Treinador {
 	}
 	public int proxVivo(){
 		int i;
-		for (i = 1; i < 5; i++){
+		for (i = 1; i < 6; i++){
 			if (pokemons[i].getEstado() == true)
 				return i;
 		}

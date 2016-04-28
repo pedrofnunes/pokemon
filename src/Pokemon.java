@@ -3,14 +3,12 @@ public class Pokemon {
 	private String nome;
 	private final int maxHP;
 	private int hp;
-	private int tipo;
 	private boolean vivo;
 	private Ataque [] ataques = new Ataque[4];
 	public Pokemon (String nome, int maxHP, Ataque at1, Ataque at2, Ataque at3, Ataque at4){
 		this.nome = nome;
 		this.maxHP = maxHP;
 		this.hp = maxHP;
-		this.tipo = tipo;
 		this.ataques[0] = at1;
 		this.ataques[1] = at2;
 		this.ataques[2] = at3;
@@ -25,9 +23,6 @@ public class Pokemon {
 	}
 	public int getMaxHP(){
 		return(maxHP);
-	}
-	public int getTipo(){
-		return(tipo);
 	}
 	public boolean getEstado(){
 		return vivo;

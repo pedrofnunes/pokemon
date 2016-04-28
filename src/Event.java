@@ -6,7 +6,7 @@ abstract public class Event {
 		evtTime = eventTime;
 	}
 	public boolean ready() {
-		return System.currentTimeMillis() >= evtTime;
+		return true;
 	}
 	public int getPrior(){
 		return prior;

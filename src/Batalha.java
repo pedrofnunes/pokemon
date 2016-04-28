@@ -2,19 +2,21 @@
 public class Batalha extends Controller {
 	private class Atacar extends Event{
 		private int prior = 3;//ou 4 ou 5, dependendo da velocidade do ataque.
-		private Ataque at;
 		private Treinador src;
 		private Treinador target;
+		private int i;
 		public Atacar (long eventTime, int i, Treinador src, Treinador target) {
 			super(eventTime);
-			this.at = src.getAtivo().getAtaque(i);
 			this.src = src;
+			this.i = i;
 			this.target = target;
-			this.prior = this.prior + at.getPrior();
+		}
+		public int getPrior(){
+			return (prior + src.getAtivo().getAtaque(i).getPrior());
 		}
 		public void action(){
-			at.usar(target.getAtivo());
-			System.out.println(src.getAtivo().getNome()+" usou "+at.getNome()+"! "+at.getDano()+" de dano.");
+			src.getAtivo().getAtaque(i).usar(target.getAtivo());
+			System.out.println(src.getAtivo().getNome()+" usou "+src.getAtivo().getAtaque(i).getNome()+"! "+src.getAtivo().getAtaque(i).getDano()+" de dano.");
 			if (target.getAtivo().getEstado() == false){
 				System.out.println(target.getAtivo().getNome()+" desmaiou!");
 				target.pokeMorreu();
@@ -40,6 +42,9 @@ public class Batalha extends Controller {
 			this.item = item;
 			this.p = p;
 		}
+		public int getPrior(){
+			return (prior);
+		}
 		public void action(){
 			item.usaItem(p);
 			System.out.println(item.getNome()+" usado em "+p.getNome()+". Novo HP = "+p.getHP());
@@ -49,6 +54,9 @@ public class Batalha extends Controller {
 		private int prior = 1;
 		private Treinador t;
 		private int i;
+		public int getPrior(){
+			return (prior);
+		}
 		public Trocar (long eventTime, Treinador t, int i) {
 			super(eventTime);
 			this.t = t;
@@ -68,6 +76,9 @@ public class Batalha extends Controller {
 			this.fugiu = fugiu;
 			this.ganhou = ganhou;
 		}
+		public int getPrior(){
+			return (prior);
+		}
 		public void action(){
 			this.deuProblema();
 			System.out.println(fugiu.getNome()+" fugiu. "+ganhou.getNome()+" é o vencedor!");
@@ -79,6 +90,9 @@ public class Batalha extends Controller {
 		public Restart(long eventTime) {
 			super(eventTime);
 		}
+		
+		Item potion = new Item ("Potion", 100);
+		
 		Ataque bite = new Ataque ("Bite", 60, 1);
 		Ataque bodySlam = new Ataque ("Body Slam", 85, 1);
 		Ataque confusion = new Ataque ("Confusion", 60, 1);
@@ -130,39 +144,84 @@ public class Batalha extends Controller {
 
 		public void action(){
 			long tm = System.currentTimeMillis();
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new UsarItem(tm, potion, charizard));
+			addEvent(new Trocar(tm, silver, 3));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
 			addEvent(new Atacar(tm, 0, red, silver));
-			addEvent(new Atacar(tm + 5, 0, silver, red));
-			addEvent(new Atacar(tm + 10, 1, red, silver));
-			addEvent(new Atacar(tm + 15, 1, silver, red));
-			addEvent(new Atacar(tm + 2000, 2, red, silver));
-			addEvent(new Atacar(tm + 2500, 2, silver, red));
-			addEvent(new Atacar(tm + 3000, 3, red, silver));
-			addEvent(new Atacar(tm + 3500, 3, silver, red));
-			addEvent(new Atacar(tm + 4000, 2, red, silver));
-			addEvent(new Atacar(tm + 4500, 3, silver, red));
-			addEvent(new Atacar(tm + 5000, 0, red, silver));
-			addEvent(new Atacar(tm + 5500, 0, silver, red));
-			addEvent(new Atacar(tm + 6000, 1, red, silver));
-			addEvent(new Atacar(tm + 6500, 1, silver, red));
-			addEvent(new Atacar(tm + 7000, 2, red, silver));
-			addEvent(new Atacar(tm + 7500, 2, silver, red));
-			addEvent(new Atacar(tm + 8000, 3, red, silver));
-			addEvent(new Atacar(tm + 8500, 3, silver, red));
-			addEvent(new Atacar(tm + 9000, 1, red, silver));
-			addEvent(new Atacar(tm + 9500, 2, silver, red));
-			addEvent(new Atacar(tm + 10000, 0, red, silver));
-			addEvent(new Atacar(tm + 10500, 0, silver, red));
-			addEvent(new Atacar(tm + 11000, 1, red, silver));
-			addEvent(new Atacar(tm + 11500, 1, silver, red));
-			addEvent(new Atacar(tm + 12000, 1, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 0, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 0, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 0, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 0, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 0, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 2, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 3, red, silver));
+			addEvent(new Atacar(tm, 3, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 2, silver, red));
+			addEvent(new Atacar(tm, 0, red, silver));
+			addEvent(new Atacar(tm, 0, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
+			addEvent(new Atacar(tm, 1, silver, red));
+			addEvent(new Atacar(tm, 1, red, silver));
 		}
 
 	}
 	public static void main(String[] args){
-		Batalha penis = new Batalha(); 
+		Batalha bat = new Batalha(); 
 		long tm = System.currentTimeMillis(); 
-		penis.addEvent(penis.new Restart(tm)); 
-		System.out.println("teste01");
-		penis.run();
+		bat.addEvent(bat.new Restart(tm)); 
+		bat.run();
 	}
 }

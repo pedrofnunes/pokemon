@@ -35,10 +35,8 @@ public class Controller {
 		while(es.getNext() != null) {
 			e = es.getNext();
 			es.removeCurrent();
-			if(es.getNext() != null){
-				f = es.getNext();
-				es.removeCurrent();
-			}
+			f = es.getNext();
+			es.removeCurrent();
 			if (f != null){
 				if (e.getPrior() <= f.getPrior()) {
 					if(e.ready()){
