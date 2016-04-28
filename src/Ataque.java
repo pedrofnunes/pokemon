@@ -10,6 +10,12 @@ public class Ataque {
 	public int getPrior(){
 		return prior;
 	}
+	public String getNome(){
+		return nome;
+	}
+	public int getDano(){
+		return dano;
+	}
 	public void usar (Pokemon p){
 		p.tomaDano (dano);
 	}

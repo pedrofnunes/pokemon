@@ -59,5 +59,10 @@ public class Controller {
 			}
 		}
 	}
+	public void finaliza(){
+		while(es.getNext() != null){
+		es.removeCurrent();
+		}
+	}
 }
 	

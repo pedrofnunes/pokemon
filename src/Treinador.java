@@ -48,6 +48,9 @@ public class Treinador {
 	public Pokemon getAtivo(){
 		return pokemons[0];
 	}
+	public String getNome(){
+		return nome;
+	}
 	public int proxVivo(){
 		int i;
 		for (i = 1; i < 5; i++){

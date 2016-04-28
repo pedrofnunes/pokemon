@@ -32,6 +32,9 @@ public class Pokemon {
 	public boolean getEstado(){
 		return vivo;
 	}
+	public Ataque getAtaque(int i){
+		return ataques[i];
+	}
 	public void recuperaHP(int cura){
 		if (hp + cura > maxHP){
 			hp = maxHP;

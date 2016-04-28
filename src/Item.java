@@ -6,6 +6,9 @@ public class Item{
 		this.nome = nome;
 		this.potencia = potencia;
 	}
+	public String getNome(){
+		return nome;
+	}
 	public void usaItem (Pokemon p){
 		p.recuperaHP (potencia);
 	}
