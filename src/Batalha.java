@@ -124,8 +124,8 @@ public class Batalha extends Controller {
 		Pokemon hitmontop = new Pokemon ("Hitmontop", 200, megaPunch, megaKick, seismicToss, earthquake);
 		Pokemon houndoom = new Pokemon ("Houndoom", 300, fireBlast, bite, quickAttack, flamethrower);
 		
-		Treinador red = new Treinador ("Red", pikachu, charizard, chansey, alakazan, blastoise, snorlax);
-		Treinador silver = new Treinador ("Silver", sceptile, gardevoir, tyranitar, octilery, hitmontop, houndoom);
+		Treinador red = new Treinador ("Red", 6, pikachu, charizard, chansey, alakazan, blastoise, snorlax);
+		Treinador silver = new Treinador ("Silver", 6,  sceptile, gardevoir, tyranitar, octilery, hitmontop, houndoom);
 
 		public void action(){
 			long tm = System.currentTimeMillis();
